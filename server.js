@@ -50,8 +50,10 @@ io.sockets.on('connection', function (socket) {
   //to be a host client. We return the info back to the host through a Host Connection Return
   //message. This will give the host the info it needs to users can start joining.
   socket.on('HC', function () {
-    clients = []; //Clean all the clients at start
     for (var k = 0; k < clients.length; k++) {
+      clients[k].isHost = false;
+      clients[k].numOfPlayers = 0;
+      clients[k].gameStarted = false;
       if (socket.id == clients[k].id) {
         clients[k].isHost = true;
         clients[k].room = GenerateRoomCode();
