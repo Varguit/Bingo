@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+        unselectable="on" ;>
+    <title>Sergi Bingo</title>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script type="text/javascript" src="/client/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/client/css/host.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="icon" href="/client/imgs/favicon.png">
+</head>
+
+<body>
+
+    <div id="site-wrapper">
+        <div id="display">
+            <p id="drawing-title">Title</p>
+        </div>
+        <canvas width="1920" height="1075" id="canvas"></canvas>
+        <div id="main-menu">
+            <h1>Coge tu
+                <img id="phone" src="/client/imgs/phone.png">y ves a &#58;
+                <span id="link">192.168.1.131:3000</span>
+            </h1>
+            <h2>tu codigo de sala es</h2>
+            <h3 id="room-code">XKRP</h3>
+            <div id="start-game-wrapper">
+                <button id="start-game">Todos preparados</button>
+            </div>
+        </div>
+        <div id="generator">
+            <h2 id="roundDisplay">XKRP</h2>
+            <table id="genTable">
+                <tr>
+                    <td>Bingo</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+            <br/>
+            <div id="bingoWinner">
+                <span>BINGOOOOOOO</span>
+            </div>
+            <div id="balls">
+                <div class="ball red">
+                    <div>
+                        <span>0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- generator -->
+    </div>
+
+    <script type="text/javascript " src="/client/js/host.js "></script>
+</body>
+
+</html>

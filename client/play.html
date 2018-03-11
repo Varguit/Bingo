@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bingo Player</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/client/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/client/css/play.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <link rel="icon" href="/client/imgs/favicon.png">
+    <script src="/client/js/alertify.min.js"></script>
+    <link rel="stylesheet" href="/client/css/alertify.min.css" />
+</head>
+
+<body>
+    <div id="site-wrapper">
+        <div id="play">
+            <header>
+                <p id="username">Nombre</p>
+            </header>
+            <div id="prompt-wrapper">
+                <p id="static">por favor, dibuja&#58;</p>
+                <p id="prompt">tu avatar!</p>
+            </div>
+            <div id="canvas-wrapper">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div id="button-wrapper">
+                <button id="send">Enviar</button>
+            </div>
+        </div>
+
+        <div id="login">
+            <h1>Bingo</h1>
+            <div id="login-wrapper">
+                <p id="login-text">Codigo&#58;</p>
+                <input type="text" id="room-code" maxlength="4">
+                <p id="login-text">Nombre &#40;Limite 12 letras&#41;&#58;</p>
+                <input type="text" id="display-name" maxlength="12">
+                <button id="login-send">Conectar</button>
+                <p id="login-error">ERROR</p>
+            </div>
+        </div>
+        <div id="input-config">
+            <button class="config-bttn" id="startGame">Todos listos</button>
+<!--             <button class="config-bttn" id="opt2">Answer 2</button>
+            <button class="config-bttn" id="opt3">Answer 3</button>
+ -->        </div>
+        <div id="page" class="tablemobile">
+            <table id="table1">
+                <tr>
+                    <th width="20%">B</th>
+                    <th width="20%">I</th>
+                    <th width="20%">N</th>
+                    <th width="20%">G</th>
+                    <th width="20%">O</th>
+                </tr>
+                <tr>
+                    <td id="square0">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square1">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square2">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square3">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square4">&nbsp;
+                        <input type="checkbox" /> </td>
+                </tr>
+                <tr>
+                    <td id="square5">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square6">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square7">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square8">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square9">&nbsp;
+                        <input type="checkbox" /> </td>
+                </tr>
+                <tr>
+                    <td id="square10">&nbsp
+                        <input type="checkbox" /> </td>
+                    <td id="square11">&nbsp
+                        <input type="checkbox" /> </td>
+                    <td id="square12">&nbsp
+                        <input type="checkbox" /> </td>
+                    <td id="square13">&nbsp
+                        <input type="checkbox" /> </td>
+                    <td id="square14">&nbsp
+                        <input type="checkbox" /> </td>
+                </tr>
+                <tr>
+                    <td id="square15">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square16">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square17">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square18">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square19">&nbsp;
+                        <input type="checkbox" /> </td>
+                </tr>
+                <tr>
+                    <td id="square20">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square21">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square22">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square23">&nbsp;
+                        <input type="checkbox" /> </td>
+                    <td id="square24">&nbsp;
+                        <input type="checkbox" /> </td>
+                </tr>
+            </table>
+            <!--             <span id="numbers">Numeros: </span> -->
+            <br>
+            <input id="callBingo" type="button" value="AAAAALTOO!" width="100%" />
+
+        </div>
+
+    </div>
+
+
+    <script src="/client/js/play.js"></script>
+
+</body>
+
+</html>

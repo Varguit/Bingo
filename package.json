@@ -1,0 +1,17 @@
+{
+  "name": "bingo_sergi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Sergi",
+  "license": "SVL",
+  "dependencies": {
+    "express": "^4.16.2",
+    "ngrok": "^2.2.26",
+    "say": "^0.14.0",
+    "socket.io": "^2.0.4"
+  }
+}

@@ -1,0 +1,380 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    cursor: default;
+}
+
+body{
+    background-color: white;
+    user-select: none;
+}
+
+#site-wrapper{
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+#main-menu{
+    position: relative;
+    top: -1080px;
+}
+
+h1{
+    font-family: "Roboto Slab", serif;
+    font-size: 30px;
+    color: #181818;
+    height: 150px;
+    width: 1000px;
+    text-align: center;
+    margin: -30px auto 0px;
+}
+
+h2{
+    font-family: "Roboto Slab", serif;
+    font-size: 20px;
+    color: #181818;
+    width: 1000px;
+    text-align: center;
+    margin: 0px auto 0px;
+}
+
+#room-code{
+    font-family: "Roboto Slab", serif;
+    font-size: 75px;
+    color: #ed40ed;
+    width: 1000px;
+    text-align: center;
+    margin: -15px auto 0px;
+    text-transform: uppercase;
+}
+
+#start-game-wrapper{
+    width: 200px;
+    height: 75px;
+    margin: 150px auto 0px;
+}
+
+#close-wrapper{
+    width: 200px;
+    height: 75px;
+    margin: 75px auto 0px;
+}
+
+#start-game{
+    font-family: "Roboto Slab", serif;
+    font-size: 20px;
+    color: #181818;
+    width: 200px;
+    height: 75px;
+    border: 4px solid #181818;
+    text-align: center;
+    position: relative;
+    outline: none;
+    background-color: #e1e3e2;
+    transition: 0.25s all ease;
+}
+#start-game:hover{
+    background-color: #181818;
+    color: #e1e3e2;
+}
+#start-game:active{
+    background-color: #0f0f0f;
+    border: 4px solid #0f0f0f;
+}
+
+#help{
+    font-family: "Roboto Slab", serif;
+    font-size: 20px;
+    color: #181818;
+    width: 200px;
+    height: 75px;
+    border: 4px solid #181818;
+    text-align: center;
+    position: relative;
+    outline: none;
+    background-color: #e1e3e2;
+    transition: 0.25s all ease;
+}
+#help:hover{
+    background-color: #181818;
+    color: #e1e3e2;
+}
+#help:active{
+    background-color: #0f0f0f;
+    border: 4px solid #0f0f0f;
+}
+
+#link{
+    color: #ed40ed;
+}
+
+#phone{
+    width: 82px;
+    height: 100px;
+    position: relative;
+    display: inline-block;
+    top: 40px;
+}
+
+#help-screen{
+    position: relative;
+    width: 1000px;
+    height: 750px;
+    background-color: #181818;
+    margin: -1770px auto 0px;
+    color: #e1e3e2;
+    text-align: left;
+    border-radius: 64px;
+    box-shadow: 0px 0px 16px #181818;
+}
+
+#help-screen h1{
+    color: #e1e3e2;
+    width: 750px;
+    margin: 50px auto 0px;
+    position: relative;
+    top: 0px;
+}
+
+#help-screen p{
+    font-family: "Roboto Slab", serif;
+    font-size: 14px;
+    width: 750px;
+    margin: -100px auto 0px;
+    text-align: justify;
+}
+
+#close-help{
+    font-family: "Roboto Slab", serif;
+    font-size: 20px;
+    color: #e1e3e2;
+    width: 200px;
+    height: 75px;
+    border: 4px solid #e1e3e2;
+    text-align: center;
+    position: relative;
+    outline: none;
+    background-color: #181818;
+    transition: 0.25s all ease;
+}
+#close-help:hover{
+    background-color: #e1e3e2;
+    color: #181818;
+}
+#close-help:active{
+    background-color: #a5a5a5;
+    border: 4px solid #a5a5a5;
+}
+
+#display{
+    text-align: center;
+    width: 1000px;
+    text-align: center;
+    color: #181818;
+    font-family: "Roboto Slab", serif;
+    font-size: 75px;
+    margin: 0px auto 0px;
+}
+
+#roundDisplay{
+    text-align: center;
+    width: 1000px;
+    text-align: center;
+    color: #181818;
+    font-family: "Roboto Slab", serif;
+    font-size: 75px;
+    margin: 0px auto 0px;
+}
+
+/* LEFT SIDE */
+#pos1{
+    top: 73px;
+    left: 240px;
+}
+
+#pos2{
+    top: 73px;
+    left: 1380px;
+}
+
+#pos3{
+    top: 313px;
+    left: 240px;
+}
+
+#pos4{
+    top: 313px;
+    left: 1380px;
+}
+
+#pos5{
+    top: 553px;
+    left: 240px;
+}
+
+#pos6{
+    top: 553px;
+    left: 1380px;
+}
+
+#pos7{
+    top: 793px;
+    left: 240px;
+}
+
+#pos8{
+    top: 793px;
+    left: 1380px;
+}
+
+#pos9{
+    left: 400px;
+    top: 433px;
+}
+
+#pos10{
+    left: 1220px;
+    top: 433px;
+}
+
+/* Right Side */
+#pos11{
+    left: 80px;
+    top: 433px;
+}
+
+#pos12{
+    left: 1540px;
+    top: 433px;
+}
+
+#pos13{ 
+    top: 194px;
+    left: 400px;
+}
+
+#pos14{
+    top: 194px;
+    left: 1220px;
+}
+
+#pos15{  
+    left: 400px;
+    top: 673px;
+}
+
+#pos16{
+    left: 1220px;
+    top: 673px;
+}
+
+#pos17{
+    top: 194px;
+    left: 80px;
+}
+
+#pos18{
+    top: 194px;
+    left: 1540px;
+}
+
+#pos19{
+    left: 80px;
+    top: 673px;
+}
+
+#pos20{
+    left: 1540px;
+    top: 673px;
+}
+
+/* Generator table */
+
+#generator {
+    position: relative;
+    top: -1080px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.bigNumberDisplay {
+    position: relative;
+    top: -600px;
+    left: -500px;
+}
+
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 3em;
+    text-align: center;
+}
+
+table, tr, td {
+    font-family: "Roboto Slab", serif;
+    border-collapse: collapse;
+    border: solid 3px #999;
+}
+
+td {
+    min-width: 70px;
+    color: #fff;
+}
+
+td.selected {
+    color: #f00;
+    border: 1px solid #333;
+    box-shadow: inset 0 0 10px #333;
+    
+    border-radius: 50%;
+}
+
+#bingoWinner {
+    font-family: "Roboto Slab", serif;
+    font-size: 30px;
+    color: #60d33a;
+
+}
+
+/* balls */
+
+.ball{
+      position:absolute;
+      left:-120px;
+      top:500px;
+      width:90px;
+      height:90px;
+      background:#004E99;
+      border-radius:50%;
+      box-shadow: 20px 30px 30px -10px rgba(0,0,0,0.4);
+  }
+  .ball>div{
+      position:absolute;
+      width:100%;
+      height:100%;
+      border-radius:50%;
+  }
+  .ball>div>span{
+      position:absolute;
+      left:23px;
+      top:14px;
+      width:45px;
+      height:45px;
+      border-radius:50%;
+      text-align:center;
+      line-height:45px;
+      font-size:24px;
+      font-weight:bold;
+      color: red;
+      background:#fff;
+  }
+  /* YOUR COLORS */
+  .ball.blue{   background: radial-gradient(circle at 20px 20px, #09f, #001);}
+  .ball.red{    background: radial-gradient(circle at 20px 20px, #f30, #001);}
+  .ball.green{  background: radial-gradient(circle at 20px 20px, #0f4, #001);}
+  .ball.yellow{ background: radial-gradient(circle at 20px 20px, #fc0, #001);}
+
