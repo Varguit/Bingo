@@ -1,0 +1,17 @@
+# utils directory used by Sergi
+utils
+
+# Dependency directory
+node_modules
+
+# Optional npm cache directory
+.npm
+
+# Optional Visual studio code
+.vs
+
+# Optional Visual studio code
+.vscode
+
+# Default settings
+settings.json
