@@ -43,8 +43,9 @@ var numOfPlayers = 0;
 var playersRanking = [];
 var roomCode;
 var round = 1;
+var totalRounds = 5;
 var randomInterval; //Start timout generator
-var intervalTime = 5000; //5 seconds
+var intervalTime = 3000; //5 seconds
 var processing = false;
 var stopGen = false;
 var $ball = $('#balls > div'),
@@ -375,7 +376,7 @@ $(document).ready(function () {
         DisplayScores(round);
         resetTable();
         //Next round
-        if (round < 10) {
+        if (round < totalRounds) {
             round++;
             setTimeout(function () {
                 decir("Preparados para la siguiente ronda?", function () {
