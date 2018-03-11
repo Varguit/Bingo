@@ -466,10 +466,10 @@ $(document).ready(function () {
             top: posRandom[1]
         });
 
-        rotateBall(800 + posRandom[0] + (diameter * i), random);
+        //rotateBall(800 + posRandom[0] + (diameter * i), random);
         decir(random, function () {
             $('td.cell' + random).addClass('selected');
-            $ball.eq(0).css({
+/*             $ball.eq(0).css({
                 transform: 'none',
                 transition: 'none',
                 left: '-120px',
@@ -478,7 +478,7 @@ $(document).ready(function () {
                 transform: 'none',
                 transition: 'none'
             });
-        });
+ */        });
     }
 
     /*             try {
