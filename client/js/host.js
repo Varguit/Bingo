@@ -66,7 +66,7 @@ $(document).ready(function () {
     $('#balls').hide();
     //debugger;
     music.play();
-    //responsiveVoice.speak("probando voz", "Spanish Female");
+    responsiveVoice.speak("probando voz", "Spanish Female");
 
     $('#start-game').click(function () {
         socket.emit('SG');
