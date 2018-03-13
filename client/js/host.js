@@ -66,12 +66,12 @@ $(document).ready(function () {
     $('#balls').hide();
     //debugger;
     //responsiveVoice.speak("hello world");
-    responsiveVoice.speak("1,2,3,4,58", "Spanish Female");
+    responsiveVoice.speak("probando voz", "Spanish Female");
 
     $('#start-game').click(function () {
         socket.emit('SG');
         //buttonClick.play(); so del botó
-        responsiveVoice.speak("1,2,3,4,58", "Spanish Female");
+        responsiveVoice.speak("probando voz", "Spanish Female");
     });
 
     var bingo = {
@@ -85,9 +85,8 @@ $(document).ready(function () {
         generateNextRandom: function () {
             if (bingo.selectedNumbers.length > 90) {
                 clearInterval(randomInterval);
-                decir("Empanados, como puede ser que nadie tenga Bingo?", function () {
-                    alert("Han sortit tots els numeros!");
-                });
+                responsiveVoice.speak("Empanados, como puede ser que nadie tenga Bingo?");
+                alert("Han sortit tots els numeros!");
                 return 0;
             } else {
                 var random = bingo.generateRandom();
@@ -385,20 +384,22 @@ $(document).ready(function () {
         if (round < totalRounds) {
             round++;
             setTimeout(function () {
-                decir("Preparados para la siguiente ronda?", function () {
-                    music.pause();
-                    music.currentTime = 0;
+                responsiveVoice.speak("Preparados para la siguiente ronda?", {
+                    onend: function () {
+                        music.pause();
+                        music.currentTime = 0;
 
-                    socket.emit('nextRound', {
-                    });
-                    StartGame({ numOfPlayers: numOfPlayers });
-                    //setTimeout(function () {
-                    /*                     context.clearRect(0, 0, canvas.width, canvas.height);
-                                        $('#generator').show("slow");
-                                        $('#display').hide("fade");
-                                        $('#bingoWinner').hide("fade");
-                                        randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
-                     */                    //}, 5000);
+                        socket.emit('nextRound', {
+                        });
+                        StartGame({ numOfPlayers: numOfPlayers });
+                        //setTimeout(function () {
+                        /*                     context.clearRect(0, 0, canvas.width, canvas.height);
+                                            $('#generator').show("slow");
+                                            $('#display').hide("fade");
+                                            $('#bingoWinner').hide("fade");
+                                            randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+                         */                    //}, 5000);
+                    }
                 });
 
             }, 10000);
@@ -420,8 +421,10 @@ $(document).ready(function () {
             }
         }
         //Restart numbers generator
-        decir("Falsa alarma, continuamos", function () {
-            randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+        responsiveVoice.speak("Falsa alarma, continuamos","Spanish Female", {
+            onend: function () {
+                randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+            }
         });
     });
 
@@ -474,17 +477,19 @@ $(document).ready(function () {
         });
 
         rotateBall(800 + posRandom[0] + (diameter * i), random);
-        decir(random, function () {
-            $('td.cell' + random).addClass('selected');
-            $ball.eq(0).css({
-                transform: 'none',
-                transition: 'none',
-                left: '-120px',
-                top: '500px',
-            }).find('div').css({
-                transform: 'none',
-                transition: 'none'
-            });
+        responsiveVoice.speak(random, "Spanish Female", {
+            onend: function () {
+                $('td.cell' + random).addClass('selected');
+                $ball.eq(0).css({
+                    transform: 'none',
+                    transition: 'none',
+                    left: '-120px',
+                    top: '500px',
+                }).find('div').css({
+                    transform: 'none',
+                    transition: 'none'
+                })
+            }
         });
     }
 
@@ -542,9 +547,7 @@ $(document).ready(function () {
         $('#bingoWinner').show();
         $('#balls').hide();
         bingo.generatedNums = [];
-        decir('BINGOOOO. Felicidades ' + player, function () {
-
-        });
+        responsiveVoice.speak('BINGOOOO. Felicidades ' + player);
         //
     }
 
