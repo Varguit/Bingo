@@ -5,17 +5,27 @@
     <meta charset="UTF-8">
     <title>Bingo Player</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="/client/js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/client/css/play.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link rel="icon" href="/client/imgs/favicon.png">
-    <script src="/client/js/alertify.min.js"></script>
-    <link rel="stylesheet" href="/client/css/alertify.min.css" />
+    <link rel="stylesheet" type="text/css" href="/client/css/alertify.min.css" />
 </head>
 
 <body>
     <div id="site-wrapper">
+
+        <div id="login">
+            <h1>Bingo</h1>
+            <div id="login-wrapper">
+                <p id="login-text">Codigo&#58;</p>
+                <input type="text" id="room-code" maxlength="4">
+                <p id="login-text">Nombre &#40;Limite 12 letras&#41;&#58;</p>
+                <input type="text" id="display-name" maxlength="12">
+                <button id="login-send">Conectar</button>
+                <p id="login-error">ERROR</p>
+            </div>
+        </div>
+
         <div id="play">
             <header>
                 <p id="username">Nombre</p>
@@ -32,22 +42,19 @@
             </div>
         </div>
 
-        <div id="login">
-            <h1>Bingo</h1>
-            <div id="login-wrapper">
-                <p id="login-text">Codigo&#58;</p>
-                <input type="text" id="room-code" maxlength="4">
-                <p id="login-text">Nombre &#40;Limite 12 letras&#41;&#58;</p>
-                <input type="text" id="display-name" maxlength="12">
-                <button id="login-send">Conectar</button>
-                <p id="login-error">ERROR</p>
-            </div>
-        </div>
         <div id="input-config">
             <button class="config-bttn" id="startGame">Todos listos</button>
-<!--             <button class="config-bttn" id="opt2">Answer 2</button>
-            <button class="config-bttn" id="opt3">Answer 3</button>
- -->        </div>
+            <br>
+            <select class="select" id="rondas">
+                <option value="3">3 Rondas</option>
+                <option value="5" selected>5 Rondas</option>
+            </select>
+            <select class="select" id="velocidad">
+                <option value="3">3 segundos</option>
+                <option value="5" selected>5 segundos</option>
+            </select>
+        </div>
+
         <div id="page" class="tablemobile">
             <table id="table1">
                 <tr>
@@ -126,8 +133,10 @@
 
     </div>
 
-
-    <script src="/client/js/play.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/client/libs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/client/libs/alertify.min.js"></script>
+    <script type="text/javascript" src="/client/js/play.js"></script>
 
 </body>
 

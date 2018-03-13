@@ -111,12 +111,34 @@ header{
   font-size: 18px;
   font-weight: bold;
   color: #181818;
-  border: 2px #181818 solid;
+  border: 8px #181818 solid;
   position: relative;
   display: block;
   outline: none;
   margin: 10px auto 0px;
 }
+
+/* Config menu options*/
+.select{
+  width: 300px;
+  height: 45px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-family: "Roboto Slab", serif;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  color: #181818;
+  border-radius: 10%;
+  border: 2px #000000 solid;
+  position: relative;
+  display: block;
+  outline: none;
+  margin: 10px auto 0px;
+}
+
 #config-bttn:hover{
   background-color: #909090;
 }

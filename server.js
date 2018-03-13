@@ -173,8 +173,12 @@ io.sockets.on('connection', function (socket) {
     }
   });
 
-  socket.on('SGfromConf', function (dta) {
-    io.emit('SGtoHost', {});
+  socket.on('SGfromConf', function (data) {
+    io.emit('SGtoHost', {
+      nRondas: data.nRondas,
+      nVelocidad: data.nVelocidad
+    });
+    //pausa
   });
 
   //One player has announced Bingo, pause generator and send to all players

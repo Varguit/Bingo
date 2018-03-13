@@ -18,11 +18,11 @@ $(document).ready(function () {
     $('#page').hide();
     $('#input-config').hide();
     //window.scrollTo(0,document.body.scrollHeight);
-    $('html,body').animate({
+/*     $('html,body').animate({
         scrollTop: document.body.scrollHeight,
         scrollTop: $('#button-wrapper').offset().top
     },"fast");
-
+ */ 
 
 
     $('#login-send').click(function () {
@@ -49,7 +49,13 @@ $(document).ready(function () {
     });
 
     $('#startGame').click(function () {
-        socket.emit('SGfromConf');
+        var ron = $("#rondas").val();
+        var vel = $("#velocidad").val();
+        // Send Start Game from Config player
+        socket.emit('SGfromConf',{
+            nRondas: ron,
+            nVelocidad: vel
+        });
     });
 
     $('td').click(function () {
@@ -123,7 +129,7 @@ $(document).ready(function () {
 
     //Game already started
     socket.on('PCF', function () {
-        alert("El juego ya ha empezado, espera a que termine");
+        alertify.alert("El juego ya ha empezado, espera a que termine");
     });
 
 
@@ -165,7 +171,7 @@ $(document).ready(function () {
     //Numbers to unselect (fake)
     socket.on('fakeNums', function (data) {
         var ArrayNums = data.unselectNums;
-        alert("Estos numeros no han salido: " + ArrayNums);
+        alertify.alert("Estos numeros no han salido: " + ArrayNums);
         $.each(ArrayNums, function (index, value) {
             $('#table1 td').filter(function () {
                 return $(this).html() == value;
@@ -175,7 +181,7 @@ $(document).ready(function () {
         socket.emit('Penalty', {
             amount: ArrayNums.length
         });
-        alert("Has sido penalizado con " + (ArrayNums.length * 100) + " puntos")
+        alertify.alert("Has sido penalizado con " + (ArrayNums.length * 100) + " puntos")
         $('#callBingo').attr('disabled', true);
         $('#callBingo').css('background-color', 'grey');
         $('#callBingo').attr('disabled', false);

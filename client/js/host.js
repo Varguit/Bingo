@@ -45,7 +45,7 @@ var roomCode;
 var round = 1;
 var totalRounds = 5;
 var randomInterval; //Start timout generator
-var intervalTime = 3000; //5 seconds
+var intervalTime = 5000; //5 seconds
 var processing = false;
 var stopGen = false;
 var $ball = $('#balls > div'),
@@ -64,11 +64,14 @@ $(document).ready(function () {
     $('#generator').hide();
     $('#bingoWinner').hide();
     $('#balls').hide();
-
+    //debugger;
+    //responsiveVoice.speak("hello world");
+    responsiveVoice.speak("1,2,3,4,58", "Spanish Female");
 
     $('#start-game').click(function () {
         socket.emit('SG');
         //buttonClick.play(); so del botó
+        responsiveVoice.speak("1,2,3,4,58", "Spanish Female");
     });
 
     var bingo = {
@@ -132,7 +135,6 @@ $(document).ready(function () {
         roomCode = data.room;
         $('#room-code').text(roomCode);
         //$('#link').text(data.ip + ":" + data.port);
-        $('#link').text("192.168.1.131" + ":" + data.port);
     });
 
     //New player joined the room
@@ -332,7 +334,11 @@ $(document).ready(function () {
 
     //Player Conf wants to start game
     //Inform host to check number of players
-    socket.on('SGtoHost', function () {
+    socket.on('SGtoHost', function (data) {
+        debugger;
+        totalRounds = parseInt(data.nRondas);
+        intervalTime = parseInt(data.nVelocidad * 1000);
+        //Send Start Game to server
         socket.emit('SG');
     });
 
@@ -467,10 +473,10 @@ $(document).ready(function () {
             top: posRandom[1]
         });
 
-        //rotateBall(800 + posRandom[0] + (diameter * i), random);
+        rotateBall(800 + posRandom[0] + (diameter * i), random);
         decir(random, function () {
             $('td.cell' + random).addClass('selected');
-/*             $ball.eq(0).css({
+            $ball.eq(0).css({
                 transform: 'none',
                 transition: 'none',
                 left: '-120px',
@@ -479,7 +485,7 @@ $(document).ready(function () {
                 transform: 'none',
                 transition: 'none'
             });
- */        });
+        });
     }
 
     /*             try {

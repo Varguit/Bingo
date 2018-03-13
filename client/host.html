@@ -5,8 +5,6 @@
     <meta charset="UTF-8" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
         unselectable="on" ;>
     <title>Sergi Bingo</title>
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <script type="text/javascript" src="/client/js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="/client/css/host.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link rel="icon" href="/client/imgs/favicon.png">
@@ -15,7 +13,7 @@
 <body>
 
     <div id="site-wrapper">
-        <div id="display">
+        <div id="display" style="display:none">
             <p id="drawing-title">Title</p>
         </div>
         <canvas width="1920" height="1075" id="canvas"></canvas>
@@ -30,7 +28,7 @@
                 <button id="start-game">Todos preparados</button>
             </div>
         </div>
-        <div id="generator">
+        <div id="generator" style="display:none">
             <h2 id="roundDisplay">XKRP</h2>
             <table id="genTable">
                 <tr>
@@ -159,6 +157,9 @@
         <!-- generator -->
     </div>
 
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/client/libs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="http://code.responsivevoice.org/responsivevoice.js"></script>
     <script type="text/javascript " src="/client/js/host.js "></script>
 </body>
 
