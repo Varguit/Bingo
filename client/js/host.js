@@ -65,8 +65,8 @@ $(document).ready(function () {
     $('#bingoWinner').hide();
     $('#balls').hide();
     //debugger;
-    //music.play();
-    responsiveVoice.speak("probando voz", "Spanish Female");
+    music.play();
+    //responsiveVoice.speak("probando voz", "Spanish Female");
 
     $('#start-game').click(function () {
         socket.emit('SG');
