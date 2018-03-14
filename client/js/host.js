@@ -39,6 +39,7 @@ var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
  */
 music.volume = 0.3;
+alert("despres new audio");
 
 var players = [];
 var numOfPlayers = 0;
@@ -61,6 +62,7 @@ var $ball = $('#balls > div'),
 //Number generator
 $(document).ready(function () {
 
+    alert("despres ready");
     //CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
@@ -68,6 +70,7 @@ $(document).ready(function () {
     $('#balls').hide();
     //debugger;
     music.play();
+
 
     $('#start-game').click(function () {
         socket.emit('SG');
@@ -130,6 +133,7 @@ $(document).ready(function () {
     socket.emit('HC');
 
     socket.on('HCR', function (data) {
+        alert("abans room code");
         roomCode = data.room;
         $('#room-code').text(roomCode);
         //$('#link').text(data.ip + ":" + data.port);
