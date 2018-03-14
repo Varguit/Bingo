@@ -61,7 +61,7 @@ var $ball = $('#balls > div'),
 //Number generator
 $(document).ready(function () {
 
-    CreateAudioArray();
+    //CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
     $('#bingoWinner').hide();
