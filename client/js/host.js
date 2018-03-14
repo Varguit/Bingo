@@ -451,8 +451,8 @@ $(document).ready(function () {
     }
 
     function StartGame(data) {
-        music.pause();
-        music.currentTime = 0;
+        //music.pause();
+        //music.currentTime = 0;
         swish.play();
         $('#main-menu').hide();
         context.clearRect(0, 0, canvas.width, canvas.height);
