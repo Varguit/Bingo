@@ -38,7 +38,6 @@ app.use('/client', express.static(__dirname + '/client'));
 var clients = [];
 
 
-
 // listen for a connection request from any client
 io.sockets.on('connection', function (socket) {
   console.log('[SERVER] New client connected (id: ' + socket.id + ').');
