@@ -1,4 +1,4 @@
-const say = require('say');
+//const say = require('say');
 
 //import express.js 
 var express = require('express');
@@ -36,6 +36,7 @@ app.use('/client', express.static(__dirname + '/client'));
 
 // variables
 var clients = [];
+
 
 
 // listen for a connection request from any client
@@ -183,11 +184,11 @@ io.sockets.on('connection', function (socket) {
 
   //One player has announced Bingo, pause generator and send to all players
   socket.on('bingoCall', function (data) {
-    say.speak('Parece que alguien tiene bingo. Vamos a comprobarlo');
     for (var k = 0; k < clients.length; k++) {
       if (socket.id == clients[k].id) {
         var playerBingoName = clients[k].name;
         console.log(playerBingoName + " possiblement te bingo");
+        //say.speak("Parece que " + playerBingoName + " tiene bingo. Vamos a comprobarlo");
         break;
       }
     }
@@ -245,6 +246,22 @@ io.sockets.on('connection', function (socket) {
 
     });
   });
+
+  //Game ended, send restart
+  socket.on('gameEnd', function (data) {
+    //Search for Conf player
+    for (var k = 0; k < clients.length; k++) {
+      if (clients[k].isConf === true) {
+        break;
+      }
+    }
+    io.in(clients[k].room).emit('RestartGame', {
+      playerIsConf: clients[k].isConf
+    });
+    console.log("restart");
+  });
+
+
 
   //SOCKETS END
 });

@@ -11,8 +11,6 @@
   "dependencies": {
     "alertify.js": "^1.0.12",
     "express": "^4.16.2",
-    "ngrok": "^2.2.26",
-    "say": "^0.14.0",
     "socket.io": "^2.0.4"
   }
 }

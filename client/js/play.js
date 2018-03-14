@@ -105,8 +105,8 @@ $(document).ready(function () {
     ////////////////////////SOCKET MESSAGES\\\\\\\\\\\\\\\\\\\\\\\
     //Login recieved
     socket.on('PCR', function (data) {
-        $('#login').hide("slow");
-        $('#play').show("slow");
+        $('#login').hide("fast");
+        $('#play').show("fast");
         $('html,body').animate({
             scrollTop: $('#button-wrapper').offset().top
         }, "fast");
@@ -129,7 +129,7 @@ $(document).ready(function () {
 
     //Game already started
     socket.on('PCF', function () {
-        alertify.alert("El juego ya ha empezado, espera a que termine");
+        alertify.alert("Aviso", "El juego ya ha empezado, espera a que termine");
     });
 
 
@@ -139,13 +139,13 @@ $(document).ready(function () {
         init();
         $('#input-config').hide();
         $('#prompt').hide();
-        $('#page').show("slow");
+        $('#page').show("fast");
         state = 'playing';
     });
 
     //Check conf
     socket.on('checkConf', function (data) {
-        $('#static').hide("slow");
+        $('#static').hide("fast");
         $('#canvas-wrapper').hide("fast");
         $('#button-wrapper').hide("fast");
 
@@ -158,7 +158,7 @@ $(document).ready(function () {
             //$('#startGame').attr('disabled', true);
 
         } else {
-            $('#prompt').text(" muy bien, eres un/a artista...");
+            $('#prompt').html(" muy bien, eres un/a artista...");
         }
 
     });
@@ -195,21 +195,43 @@ $(document).ready(function () {
 
     //Start a new round
     socket.on('nextR', function (data) {
-        alertify.alert()
-            .setting({
-                'label': 'Vamos!',
-                'message': 'Siguiente ronda!',
-                'modal': true,
-                'movable': false,
-                'transition': zoom
-            }).show();
-        //alert("Next Round");
+        alertify.alert("Preparado", "Siguiente ronda!");
+        /*             .setting({
+                        'label': 'Vamos!',
+                        'message': 'Siguiente ronda!',
+                        'modal': true,
+                        'movable': false,
+                        'transition': zoom
+                    }).show();
+         */
         resetUsedNumbersArray();
         init();
 
+
     });
 
+    socket.on('RestartGame', function (data) {
+        alert("restart");
+        resetUsedNumbersArray();
 
+        $('#static').hide("fast");
+        $('#canvas-wrapper').hide("fast");
+        $('#button-wrapper').hide("fast");
+        $('#page').hide("fast");
+        $('#prompt').show("fast");
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        //Show config options only if  player 1
+        if (data.playerIsConf === true) {
+            $('#input-config').show();
+            $('#prompt').html('Ahora tu eres el que manda!<br>Elige las opciones del juego y decide cuando empezar.<br> Recuerda, un gran poder conlleva una gran responsabilidad! ');
+
+        } else {
+            $('#prompt').html(" espera un momento a que el Master inicie otro juego");
+        }
+        
+    });
 
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\
 
