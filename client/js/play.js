@@ -163,7 +163,6 @@ $(document).ready(function () {
 
     });
 
-
     socket.on('possibleBingo', function () {
         $('#callBingo').attr('disabled', true);
     });

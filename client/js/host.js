@@ -151,34 +151,34 @@ $(document).ready(function () {
             player1Avatar.src = data.drawing;
 
             player1Avatar.onload = function () {
-                context.drawImage(player1Avatar, 140, 40, player1Avatar.width / 2, player1Avatar.height / 2);
+                context.drawImage(player1Avatar, 40, 40, player1Avatar.width / 3, player1Avatar.height / 3);
                 context.fillStyle = "#69D2E7";
-                context.fillText(data.username.toUpperCase(), 212, 270);
+                context.fillText(data.username.toUpperCase(), 112, 270);
             }
         }
         else if (data.playerNum == 2) {
             player2Avatar.src = data.drawing;
 
             player2Avatar.onload = function () {
-                context.drawImage(player2Avatar, 1165, 40, player2Avatar.width / 2, player2Avatar.height / 2);
+                context.drawImage(player2Avatar, 1365, 40, player2Avatar.width / 2, player2Avatar.height / 2);
                 context.fillStyle = "#FA6900";
-                context.fillText(data.username.toUpperCase(), 1257, 270);
+                context.fillText(data.username.toUpperCase(), 1357, 270);
             }
         }
         else if (data.playerNum == 3) {
             player3Avatar.src = data.drawing;
 
             player3Avatar.onload = function () {
-                context.drawImage(player3Avatar, 735, 192, player3Avatar.width / 2, player3Avatar.height / 2);
+                context.drawImage(player3Avatar, 335, 192, player3Avatar.width / 2, player3Avatar.height / 2);
                 context.fillStyle = "#FE4365";
-                context.fillText(data.username.toUpperCase(), 806, 422);
+                context.fillText(data.username.toUpperCase(), 406, 422);
             }
         }
         else if (data.playerNum == 4) {
             player4Avatar.src = data.drawing;
 
             player4Avatar.onload = function () {
-                context.drawImage(player4Avatar, 1270, 192, player4Avatar.width / 2, player4Avatar.height / 2);
+                context.drawImage(player4Avatar, 1170, 192, player4Avatar.width / 2, player4Avatar.height / 2);
                 context.fillStyle = "#83AF9B";
                 context.fillText(data.username.toUpperCase(), 1242, 422);
             }
