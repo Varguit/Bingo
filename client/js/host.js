@@ -58,7 +58,6 @@ var $ball = $('#balls > div'),
 /////////////////////JQUERY\\\\\\\\\\\\\\\\\
 //Number generator
 $(document).ready(function () {
-    alert("start");
     //CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
