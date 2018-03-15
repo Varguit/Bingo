@@ -135,7 +135,9 @@ $(document).ready(function () {
 
     //New player joined the room
     socket.on('NUA', function (data) {
+        music.pause();
         pop.play();
+        music.play();
         var newUser = {
             avatar: data.drawing,
             playerNum: data.playerNum,
@@ -348,6 +350,7 @@ $(document).ready(function () {
     //Check possible bingo
     socket.on('possibleBingo', function (data) {
         clearInterval(randomInterval);
+        music.pause();
         aalto.play();
         //Check bingo numbers
         setTimeout(function () {
@@ -369,7 +372,6 @@ $(document).ready(function () {
                 //alert("Aquests numeros no hi son: " + difference);
             }
         }, 5000);
-
     });
 
     socket.on('UpdateScore', function (data) {
@@ -394,8 +396,6 @@ $(document).ready(function () {
             //alert("todas las rondas completadas");
             fin.play();
             fin.onended = function () {
-                /*             responsiveVoice.speak("Fin del juego", "Spanish Female");
-                 */            //alert("todas las rondas completadas")
                 round = 1;
                 ResetPlayerScores();
                 socket.emit('gameEnd', {
@@ -411,11 +411,8 @@ $(document).ready(function () {
             }
         }
         //Restart numbers generator
-        responsiveVoice.speak("Falsa alarma, continuamos", "Spanish Female", {
-            onend: function () {
-                randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
-            }
-        });
+        falsaAlarma.play();
+        randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
     });
 
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\
@@ -426,6 +423,8 @@ $(document).ready(function () {
         } */
 
     function StartGame(data) {
+        music.pause();
+        music.currentTime = 0;
         swish.play();
         $('#main-menu').hide();
         context.clearRect(0, 0, canvas.width, canvas.height);
