@@ -39,7 +39,6 @@ var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
  */
 music.volume = 0.3;
-alert("despres new audio");
 
 var players = [];
 var numOfPlayers = 0;
