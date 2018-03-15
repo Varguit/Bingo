@@ -66,8 +66,6 @@ $(document).ready(function () {
     $('#generator').hide();
     $('#bingoWinner').hide();
     $('#balls').hide();
-    //debugger;
-    decir("hola");
     music.play();
 
     $('#start-game').click(function () {
@@ -136,7 +134,7 @@ $(document).ready(function () {
 
     //New player joined the room
     socket.on('NUA', function (data) {
-        pop.play();
+        //pop.play();
         var newUser = {
             avatar: data.drawing,
             playerNum: data.playerNum,
@@ -349,7 +347,6 @@ $(document).ready(function () {
     //Check possible bingo
     socket.on('possibleBingo', function (data) {
         clearInterval(randomInterval);
-        music.pause();
         aalto.play();
         //Check bingo numbers
         setTimeout(function () {
@@ -499,7 +496,7 @@ $(document).ready(function () {
         $('tbody tr td').removeClass("selected");
     }
 
-        function decir(text, onend) {
+    /*     function decir(text, onend) {
             window.speechSynthesis.cancel();
             var ssu = new SpeechSynthesisUtterance(text);
             window.speechSynthesis.speak(ssu);
@@ -511,7 +508,7 @@ $(document).ready(function () {
                 window.setTimeout(_wait, 200);
             }
             _wait();
-        }
+        } */
 
     function weHaveAWinner(player) {
         $('#bingoWinner').show();
@@ -630,7 +627,7 @@ $(document).ready(function () {
             music.play();
             //We need to display all the users avatars back at their positions but replace their names with their scores
             for (var p = 0; p < players.length; p++) {
-                pop.play();
+                //pop.play();
                 if (players[p].playerNum == 1) {
                     context.drawImage(player1Avatar, 440, 40, player1Avatar.width / 2, player1Avatar.height / 2);
                     context.fillStyle = "#69D2E7";
