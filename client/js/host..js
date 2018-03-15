@@ -33,7 +33,7 @@ var player20Avatar = new Image();
 var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
-var music = new Audio('../client/files/music.wav');
+var music = new Audio('../client/files/music.mp3');
 var aalto = new Audio('../client/files/aalto.mp3');
 var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
@@ -390,7 +390,7 @@ $(document).ready(function () {
 
         } else {
             //Game end
-            alert("todas las rondas completadas");
+            //alert("todas las rondas completadas");
             fin.play();
             fin.onended = function () {
                 /*             responsiveVoice.speak("Fin del juego", "Spanish Female");
