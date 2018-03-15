@@ -249,16 +249,9 @@ io.sockets.on('connection', function (socket) {
 
   //Game ended, send restart
   socket.on('gameEnd', function (data) {
-    //Search for Conf player
-    for (var k = 0; k < clients.length; k++) {
-      if (clients[k].isConf === true) {
-        break;
-      }
-    }
     io.in(clients[k].room).emit('RestartGame', {
-      playerIsConf: clients[k].isConf
     });
-    console.log("restart");
+    console.log("game restarted");
   });
 
 

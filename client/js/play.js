@@ -10,6 +10,7 @@ $(document).ready(function () {
     var baseArray = new Array(0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4);
     var number = 0;
     var base = 0;
+    var playerIsConf = false;
 
     //Initial login show
     $('#play').hide();
@@ -26,7 +27,7 @@ $(document).ready(function () {
 
 
     $('#login-send').click(function () {
-
+        playerIsConf = false;
         var username = $('#display-name').val();
         var roomCode = $('#room-code').val();
 
@@ -155,6 +156,7 @@ $(document).ready(function () {
         if (data.isConf === true) {
             $('#input-config').show();
             $('#prompt').html('Ahora tu eres el que manda!<br>Elige las opciones del juego y decide cuando empezar.<br> Recuerda, un gran poder conlleva una gran responsabilidad! ');
+            playerIsConf = true;
             //$('#startGame').attr('disabled', true);
 
         } else {
@@ -211,8 +213,7 @@ $(document).ready(function () {
 
     });
 
-    socket.on('RestartGame', function (data) {
-        alert("restart");
+    socket.on('RestartGame', function () {
         resetUsedNumbersArray();
 
         $('#static').hide("fast");
@@ -224,10 +225,9 @@ $(document).ready(function () {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         //Show config options only if  player 1
-        if (data.playerIsConf === true) {
+        if (playerIsConf === true) {
             $('#input-config').show();
             $('#prompt').html('Ahora tu eres el que manda!<br>Elige las opciones del juego y decide cuando empezar.<br> Recuerda, un gran poder conlleva una gran responsabilidad! ');
-
         } else {
             $('#prompt').html(" espera un momento a que el Master inicie otro juego");
         }

@@ -151,9 +151,9 @@ $(document).ready(function () {
             player1Avatar.src = data.drawing;
 
             player1Avatar.onload = function () {
-                context.drawImage(player1Avatar, 40, 40, player1Avatar.width / 3, player1Avatar.height / 3);
+                context.drawImage(player1Avatar, 440, 40, player1Avatar.width / 2, player1Avatar.height / 2);
                 context.fillStyle = "#69D2E7";
-                context.fillText(data.username.toUpperCase(), 112, 270);
+                context.fillText(data.username.toUpperCase(), 512, 270);
             }
         }
         else if (data.playerNum == 2) {
@@ -162,16 +162,16 @@ $(document).ready(function () {
             player2Avatar.onload = function () {
                 context.drawImage(player2Avatar, 1365, 40, player2Avatar.width / 2, player2Avatar.height / 2);
                 context.fillStyle = "#FA6900";
-                context.fillText(data.username.toUpperCase(), 1357, 270);
+                context.fillText(data.username.toUpperCase(), 1457, 270);
             }
         }
         else if (data.playerNum == 3) {
             player3Avatar.src = data.drawing;
 
             player3Avatar.onload = function () {
-                context.drawImage(player3Avatar, 335, 192, player3Avatar.width / 2, player3Avatar.height / 2);
+                context.drawImage(player3Avatar, 635, 192, player3Avatar.width / 2, player3Avatar.height / 2);
                 context.fillStyle = "#FE4365";
-                context.fillText(data.username.toUpperCase(), 406, 422);
+                context.fillText(data.username.toUpperCase(), 706, 422);
             }
         }
         else if (data.playerNum == 4) {
@@ -381,8 +381,8 @@ $(document).ready(function () {
         DisplayScores(round);
         resetTable();
         //Next round
+        round++;
         if (round < totalRounds) {
-            round++;
             setTimeout(function () {
                 responsiveVoice.speak("Preparados para la siguiente ronda?", {
                     onend: function () {
@@ -644,108 +644,109 @@ $(document).ready(function () {
             //We need to display all the users avatars back at their positions but replace their names with their scores
             for (var p = 0; p < players.length; p++) {
                 pop.play();
-                if (players[p].playerNum == 1) {
-                    context.drawImage(player1Avatar, 440, 40, player1Avatar.width / 2, player1Avatar.height / 2);
+
+                if(players[p].playerNum == 1){
+                    context.drawImage(player1Avatar, 440, 40, player1Avatar.width/2, player1Avatar.height/2);
                     context.fillStyle = "#69D2E7";
                     context.fillText(players[p].score, 512, 270);
                 }
-                else if (players[p].playerNum == 2) {
-                    context.drawImage(player2Avatar, 1365, 40, player2Avatar.width / 2, player2Avatar.height / 2);
+                else if(players[p].playerNum == 2){
+                    context.drawImage(player2Avatar, 1365, 40, player2Avatar.width/2, player2Avatar.height/2);
                     context.fillStyle = "#FA6900";
                     context.fillText(players[p].score, 1457, 270);
                 }
-                else if (players[p].playerNum == 3) {
-                    context.drawImage(player3Avatar, 635, 192, player3Avatar.width / 2, player3Avatar.height / 2);
+                else if(players[p].playerNum == 3){
+                    context.drawImage(player3Avatar, 635, 192, player3Avatar.width/2, player3Avatar.height/2);
                     context.fillStyle = "#FE4365";
                     context.fillText(players[p].score, 706, 422);
                 }
-                else if (players[p].playerNum == 4) {
-                    context.drawImage(player4Avatar, 1170, 192, player4Avatar.width / 2, player4Avatar.height / 2);
+                else if(players[p].playerNum == 4){
+                    context.drawImage(player4Avatar, 1170, 192, player4Avatar.width/2, player4Avatar.height/2);
                     context.fillStyle = "#83AF9B";
                     context.fillText(players[p].score, 1242, 422);
                 }
-                else if (players[p].playerNum == 5) {
-                    context.drawImage(player5Avatar, 440, 350, player5Avatar.width / 2, player5Avatar.height / 2);
+                else if(players[p].playerNum == 5){
+                    context.drawImage(player5Avatar, 440, 350, player5Avatar.width/2, player5Avatar.height/2);
                     context.fillStyle = "#9f9f85";
                     context.fillText(players[p].score, 512, 580);
                 }
-                else if (players[p].playerNum == 6) {
-                    context.drawImage(player6Avatar, 1365, 350, player6Avatar.width / 2, player6Avatar.height / 2);
+                else if(players[p].playerNum == 6){
+                    context.drawImage(player6Avatar, 1365, 350, player6Avatar.width/2, player6Avatar.height/2);
                     context.fillStyle = "#cca52a";
                     context.fillText(players[p].score, 1457, 580);
                 }
-                else if (players[p].playerNum == 7) {
-                    context.drawImage(player7Avatar, 635, 502, player7Avatar.width / 2, player7Avatar.height / 2);
+                else if(players[p].playerNum == 7){
+                    context.drawImage(player7Avatar, 635, 502, player7Avatar.width/2, player7Avatar.height/2);
                     context.fillStyle = "#79BD9A";
                     context.fillText(players[p].score, 702, 732);
                 }
-                else if (players[p].playerNum == 8) {
-                    context.drawImage(player8Avatar, 1170, 502, player8Avatar.width / 2, player8Avatar.height / 2);
+                else if(players[p].playerNum == 8){
+                    context.drawImage(player8Avatar, 1170, 502, player8Avatar.width/2, player8Avatar.height/2);
                     context.fillStyle = "#D95B43";
                     context.fillText(players[p].score, 1242, 732);
                 }
-                else if (players[p].playerNum == 9) {
-                    context.drawImage(player9Avatar, 440, 662, player9Avatar.width / 2, player9Avatar.height / 2);
+                else if(players[p].playerNum == 9){
+                    context.drawImage(player9Avatar, 440, 662, player9Avatar.width/2, player9Avatar.height/2);
                     context.fillStyle = "#542437";
                     context.fillText(players[p].score, 512, 892);
                 }
-                else if (players[p].playerNum == 10) {
-                    context.drawImage(player10Avatar, 1365, 662, player10Avatar.width / 2, player10Avatar.height / 2);
+                else if(players[p].playerNum == 10){
+                    context.drawImage(player10Avatar, 1365, 662, player10Avatar.width/2, player10Avatar.height/2);
                     context.fillStyle = "#53777A";
                     context.fillText(players[p].score, 1457, 892);
                 }
-                else if (players[p].playerNum == 11) {
-                    context.drawImage(player11Avatar, 245, 40, player11Avatar.width / 2, player11Avatar.height / 2);
+                else if(players[p].playerNum == 11){
+                    context.drawImage(player11Avatar, 245, 40, player11Avatar.width/2, player11Avatar.height/2);
                     context.fillStyle = "#6C5B7B";
                     context.fillText(players[p].score, 317, 270);
                 }
-                else if (players[p].playerNum == 12) {
-                    context.drawImage(player12Avatar, 1560, 40, player12Avatar.width / 2, player12Avatar.height / 2);
+                else if(players[p].playerNum == 12){
+                    context.drawImage(player12Avatar, 1560, 40, player12Avatar.width/2, player12Avatar.height/2);
                     context.fillStyle = "#0B486B";
                     context.fillText(players[p].score, 1632, 270);
                 }
-                else if (players[p].playerNum == 13) {
-                    context.drawImage(player13Avatar, 50, 192, player13Avatar.width / 2, player13Avatar.height / 2);
+                else if(players[p].playerNum == 13){
+                    context.drawImage(player13Avatar, 50, 192, player13Avatar.width/2, player13Avatar.height/2);
                     context.fillStyle = "#2e8759";
                     context.fillText(players[p].score, 122, 422);
                 }
-                else if (players[p].playerNum == 14) {
-                    context.drawImage(player14Avatar, 1755, 192, player14Avatar.width / 2, player14Avatar.height / 2);
+                else if(players[p].playerNum == 14){
+                    context.drawImage(player14Avatar, 1755, 192, player14Avatar.width/2, player14Avatar.height/2);
                     context.fillStyle = "#594F4F";
                     context.fillText(players[p].score, 1827, 422);
                 }
-                else if (players[p].playerNum == 15) {
-                    context.drawImage(player15Avatar, 245, 350, player15Avatar.width / 2, player15Avatar.height / 2);
+                else if(players[p].playerNum == 15){
+                    context.drawImage(player15Avatar, 245, 350, player15Avatar.width/2, player15Avatar.height/2);
                     context.fillStyle = "#99B2B7";
                     context.fillText(players[p].score, 317, 580);
                 }
-                else if (players[p].playerNum == 16) {
-                    context.drawImage(player16Avatar, 1560, 350, player16Avatar.width / 2, player16Avatar.height / 2);
+                else if(players[p].playerNum == 16){
+                    context.drawImage(player16Avatar, 1560, 350, player16Avatar.width/2, player16Avatar.height/2);
                     context.fillStyle = "#797260";
                     context.fillText(players[p].score, 1632, 580);
                 }
-                else if (players[p].playerNum == 17) {
-                    context.drawImage(player17Avatar, 50, 502, player17Avatar.width / 2, player17Avatar.height / 2);
+                else if(players[p].playerNum == 17){
+                    context.drawImage(player17Avatar, 50, 502, player17Avatar.width/2, player17Avatar.height/2);
                     context.fillStyle = "#355C7D";
                     context.fillText(players[p].score, 122, 732);
                 }
-                else if (players[p].playerNum == 18) {
-                    context.drawImage(player18Avatar, 1755, 502, player18Avatar.width / 2, player18Avatar.height / 2);
+                else if(players[p].playerNum == 18){
+                    context.drawImage(player18Avatar, 1755, 502, player18Avatar.width/2, player18Avatar.height/2);
                     context.fillStyle = "#3299BB";
                     context.fillText(players[p].score, 1827, 732);
                 }
-                else if (players[p].playerNum == 19) {
-                    context.drawImage(player19Avatar, 245, 662, player19Avatar.width / 2, player19Avatar.height / 2);
+                else if(players[p].playerNum == 19){
+                    context.drawImage(player19Avatar, 245, 662, player19Avatar.width/2, player19Avatar.height/2);
                     context.fillStyle = "#C06C84";
                     context.fillText(players[p].score, 317, 892);
                 }
-                else if (players[p].playerNum == 20) {
-                    context.drawImage(player20Avatar, 1560, 662, player20Avatar.width / 2, player20Avatar.height / 2);
+                else if(players[p].playerNum == 20){
+                    context.drawImage(player20Avatar, 1560, 662, player20Avatar.width/2, player20Avatar.height/2);
                     context.fillStyle = "#519548";
                     context.fillText(players[p].score, 1632, 892);
                 }
             }
-
+    
             playersRanking = players;
             playersRanking.sort(sort_by('score', false, parseInt));
 
