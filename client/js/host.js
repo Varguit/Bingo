@@ -130,7 +130,6 @@ $(document).ready(function () {
     socket.on('HCR', function (data) {
         roomCode = data.room;
         $('#room-code').text(roomCode);
-        //$('#link').text(data.ip + ":" + data.port);
     });
 
     //New player joined the room
@@ -391,12 +390,17 @@ $(document).ready(function () {
 
         } else {
             //Game end
-            alert("todas las rondas completadas")
-            socket.emit('gameEnd', {
-            });
+            alert("todas las rondas completadas");
+            fin.play();
+            fin.onended = function () {
+                /*             responsiveVoice.speak("Fin del juego", "Spanish Female");
+                 */            //alert("todas las rondas completadas")
+                round = 1;
+                ResetPlayerScores();
+                socket.emit('gameEnd', {
+                });
+            }
         }
-
-
     });
 
     socket.on('PlayerPenalty', function (data) {
@@ -441,10 +445,10 @@ $(document).ready(function () {
         console.log(distance);
         var degree = distance * 360 / perimeter;
         $ball.eq(i).css({
-            transition: "3s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+            transition: "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
             transform: 'translateX(' + distance + 'px)'
         }).find('div').css({
-            transition: "3s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+            transition: "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
             transform: 'rotate(' + degree + 'deg)'
         });
     }
@@ -455,7 +459,7 @@ $(document).ready(function () {
         $('.ball>div>span').text(random);
         var posRandom = [
             $('td.cell' + random).position().left,
-            $('td.cell' + random).position().top
+            $('td.cell' + random).position().top + diameter
         ];
         $ball.eq(0).css({
             top: posRandom[1]
@@ -477,24 +481,6 @@ $(document).ready(function () {
             })
         }, 2000);
     }
-
-    /*             try {
-                    numsAudio[random].play();
-                }
-                catch (err) {
-                    alert(err);
-                    //alert(numsAudio[random].error.code);
-                    if (err === 4) {
-                        decir(random, selectRotatingBallNumber());
-                    }
-                    else {
-                        numsAudio[random].onended = function () {
-                            selectRotatingBallNumber()
-                        };
-                    }
-                }
-            }
-     */
 
     function selectRotatingBallNumber(num) {
         $('td.cell' + num).addClass('selected');
@@ -532,7 +518,6 @@ $(document).ready(function () {
         $('#bingoWinner').show();
         $('#balls').hide();
         bingo.generatedNums = [];
-        responsiveVoice.speak('BINGOOOO. Felicidades ' + player);
         //
     }
 
@@ -625,6 +610,12 @@ $(document).ready(function () {
             if (winner == players[i].name) {
                 players[i].score += 1000;
             }
+        }
+    }
+
+    function ResetPlayerScores() {
+        for (var i = 0; i < players.length; i++) {
+            players[i].score = 0;
         }
     }
 
