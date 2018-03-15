@@ -83,7 +83,8 @@ $(document).ready(function () {
         generateNextRandom: function () {
             if (bingo.selectedNumbers.length > 90) {
                 clearInterval(randomInterval);
-                alert("Han sortit tots els numeros!");
+                responsiveVoice.speak("Han salido todos los numeros. A que estais jugando?", "Spanish Female");
+                //alert("Han sortit tots els numeros!");
                 return 0;
             } else {
                 var random = bingo.generateRandom();
@@ -134,7 +135,7 @@ $(document).ready(function () {
 
     //New player joined the room
     socket.on('NUA', function (data) {
-        //pop.play();
+        pop.play();
         var newUser = {
             avatar: data.drawing,
             playerNum: data.playerNum,
@@ -348,26 +349,29 @@ $(document).ready(function () {
     socket.on('possibleBingo', function (data) {
         clearInterval(randomInterval);
         aalto.play();
-        //Check bingo numbers
-        setTimeout(function () {
-            var generatedNums = bingo.selectedNumbers;
-            var givenNums = data.bingoNums;
-            var difference = $(givenNums).not(generatedNums).get();
-            if (difference.length == 0) {
-                //Es ben bona
-                weHaveAWinner(data.player);
-                socket.emit('WHW', {
-                    winner: data.player,
-                });
-            } else {
-                //Tell server that the player who emitted bingo has fake numbers
-                socket.emit('fakeNumbers', {
-                    fakenums: difference,
-                    playerID: data.playerID
-                });
-                //alert("Aquests numeros no hi son: " + difference);
-            }
-        }, 5000);
+        aalto.onended = function () {
+            responsiveVoice.speak(data.player + " dice que tiene bingo. Vamos a comprobarlo", "Spanish Female", {
+                onend: function () {
+                    //Check bingo numbers
+                    var generatedNums = bingo.selectedNumbers;
+                    var givenNums = data.bingoNums;
+                    var difference = $(givenNums).not(generatedNums).get();
+                    if (difference.length == 0) {
+                        //Es ben bona
+                        weHaveAWinner(data.player);
+                        socket.emit('WHW', {
+                            winner: data.player,
+                        });
+                    } else {
+                        //Tell server that the player who emitted bingo has fake numbers
+                        socket.emit('fakeNumbers', {
+                            fakenums: difference,
+                            playerID: data.playerID
+                        });
+                    }
+                }
+            });
+        }
     });
 
     socket.on('UpdateScore', function (data) {
@@ -379,12 +383,16 @@ $(document).ready(function () {
         if (round < totalRounds) {
             round++;
             setTimeout(function () {
-                music.pause();
-                music.currentTime = 0;
+                responsiveVoice.speak("Preparados para la siguiente ronda?", {
+                    onend: function () {
+                        music.pause();
+                        music.currentTime = 0;
 
-                socket.emit('nextRound', {
+                        socket.emit('nextRound', {
+                        });
+                        StartGame({ numOfPlayers: numOfPlayers });
+                    }
                 });
-                StartGame({ numOfPlayers: numOfPlayers });
             }, 10000);
 
         } else {
@@ -408,7 +416,9 @@ $(document).ready(function () {
         }
         //Restart numbers generator
         falsaAlarma.play();
-        randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+        falsaAlarma.onended = function () {
+            randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+        };
     });
 
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\
@@ -452,7 +462,10 @@ $(document).ready(function () {
     function GenerateNumber() {
         $('#balls').show();
         var random = bingo.generateNextRandom().toString();
-        num = new Audio('../client/files/numbers/' + random + '.mp3');
+
+        /*         num = new Audio('../client/files/numbers/' + random + '.mp3');
+                num.play();
+         */
         $('.ball>div>span').text(random);
         var posRandom = [
             $('td.cell' + random).position().left,
@@ -463,19 +476,20 @@ $(document).ready(function () {
         });
 
         rotateBall(770 + posRandom[0] + (diameter * i), random);
-        setTimeout(function () {
-            num.play();
-            $('td.cell' + random).addClass('selected');
-            $ball.eq(0).css({
-                transform: 'none',
-                transition: 'none',
-                left: '-120px',
-                top: '500px',
-            }).find('div').css({
-                transform: 'none',
-                transition: 'none'
-            })
-        }, 2000);
+        responsiveVoice.speak(random, "Spanish Female", {
+            onend: function () {
+                $('td.cell' + random).addClass('selected');
+                $ball.eq(0).css({
+                    transform: 'none',
+                    transition: 'none',
+                    left: '-120px',
+                    top: '500px',
+                }).find('div').css({
+                    transform: 'none',
+                    transition: 'none'
+                })
+            }
+        });
     }
 
     function selectRotatingBallNumber(num) {
@@ -514,6 +528,7 @@ $(document).ready(function () {
         $('#bingoWinner').show();
         $('#balls').hide();
         bingo.generatedNums = [];
+        responsiveVoice.speak('BINGO. Felicidades ' + player, "Spanish Male");
         //
     }
 
@@ -627,7 +642,7 @@ $(document).ready(function () {
             music.play();
             //We need to display all the users avatars back at their positions but replace their names with their scores
             for (var p = 0; p < players.length; p++) {
-                //pop.play();
+                pop.play();
                 if (players[p].playerNum == 1) {
                     context.drawImage(player1Avatar, 440, 40, player1Avatar.width / 2, player1Avatar.height / 2);
                     context.fillStyle = "#69D2E7";

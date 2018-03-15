@@ -171,8 +171,10 @@ $(document).ready(function () {
     //Numbers to unselect (fake)
     socket.on('fakeNums', function (data) {
         var ArrayNums = data.unselectNums;
-        alertify.alert("Atencion", "Estos numeros no han salido:\n " + ArrayNums + " Has sido penalizado con " + (ArrayNums.length * 100) + " puntos");
-
+        alertify.alert("Atencion", "Estos numeros no han salido:\n " + ArrayNums, function () {
+             
+            alertify.success("Penalizado con " + (ArrayNums.length * 100) + " puntos"); 
+        });
         $.each(ArrayNums, function (index, value) {
             $('#table1 td').filter(function () {
                 return $(this).html() == value;
@@ -230,7 +232,7 @@ $(document).ready(function () {
         } else {
             $('#prompt').html(" espera un momento a que el Master inicie otro juego");
         }
-        
+
     });
 
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\
