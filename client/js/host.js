@@ -67,6 +67,7 @@ $(document).ready(function () {
     $('#bingoWinner').hide();
     $('#balls').hide();
     //debugger;
+    decir("hola");
     music.play();
 
     $('#start-game').click(function () {
@@ -135,9 +136,7 @@ $(document).ready(function () {
 
     //New player joined the room
     socket.on('NUA', function (data) {
-        music.pause();
         pop.play();
-        music.play();
         var newUser = {
             avatar: data.drawing,
             playerNum: data.playerNum,
@@ -161,7 +160,7 @@ $(document).ready(function () {
             player2Avatar.src = data.drawing;
 
             player2Avatar.onload = function () {
-                context.drawImage(player2Avatar, 1165, 40, player2Avatar.width / 2, player2Avatar.height / 2);
+                context.drawImage(player2Avatar, 1665, 40, player2Avatar.width / 2, player2Avatar.height / 2);
                 context.fillStyle = "#FA6900";
                 context.fillText(data.username.toUpperCase(), 1257, 270);
             }
@@ -170,7 +169,7 @@ $(document).ready(function () {
             player3Avatar.src = data.drawing;
 
             player3Avatar.onload = function () {
-                context.drawImage(player3Avatar, 635, 192, player3Avatar.width / 2, player3Avatar.height / 2);
+                context.drawImage(player3Avatar, 535, 192, player3Avatar.width / 2, player3Avatar.height / 2);
                 context.fillStyle = "#FE4365";
                 context.fillText(data.username.toUpperCase(), 706, 422);
             }
@@ -179,7 +178,7 @@ $(document).ready(function () {
             player4Avatar.src = data.drawing;
 
             player4Avatar.onload = function () {
-                context.drawImage(player4Avatar, 1170, 192, player4Avatar.width / 2, player4Avatar.height / 2);
+                context.drawImage(player4Avatar, 1270, 192, player4Avatar.width / 2, player4Avatar.height / 2);
                 context.fillStyle = "#83AF9B";
                 context.fillText(data.username.toUpperCase(), 1242, 422);
             }
@@ -500,7 +499,7 @@ $(document).ready(function () {
         $('tbody tr td').removeClass("selected");
     }
 
-    /*     function decir(text, onend) {
+        function decir(text, onend) {
             window.speechSynthesis.cancel();
             var ssu = new SpeechSynthesisUtterance(text);
             window.speechSynthesis.speak(ssu);
@@ -512,7 +511,7 @@ $(document).ready(function () {
                 window.setTimeout(_wait, 200);
             }
             _wait();
-        } */
+        }
 
     function weHaveAWinner(player) {
         $('#bingoWinner').show();
