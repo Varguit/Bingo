@@ -34,9 +34,11 @@ var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
 var music = new Audio('../client/files/music.wav');
-var num4 = new Audio('../client/files/num4.wav');
+var aalto = new Audio('../client/files/aalto.mp3');
+var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
+var fin = new Audio('../client/files/fin.mp3');
 music.volume = 0.3;
-var buffer = 0.08;
+
 
 var players = [];
 var numOfPlayers = 0;
