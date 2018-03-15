@@ -33,7 +33,7 @@ var player20Avatar = new Image();
 var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
-var music = new Audio('../client/files/music.wav');
+var music = new Audio('../client/files/music.mp3');
 var aalto = new Audio('../client/files/aalto.mp3');
 var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
@@ -61,19 +61,16 @@ var $ball = $('#balls > div'),
 //Number generator
 $(document).ready(function () {
 
-    //CreateAudioArray();
+    CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
     $('#bingoWinner').hide();
     $('#balls').hide();
     //debugger;
     music.play();
-    //responsiveVoice.speak("probando voz", "Spanish Female");
 
     $('#start-game').click(function () {
         socket.emit('SG');
-        //buttonClick.play(); so del botó
-        responsiveVoice.speak("probando voz", "Spanish Female");
     });
 
     var bingo = {
@@ -87,7 +84,6 @@ $(document).ready(function () {
         generateNextRandom: function () {
             if (bingo.selectedNumbers.length > 90) {
                 clearInterval(randomInterval);
-                responsiveVoice.speak("Empanados, como puede ser que nadie tenga Bingo?");
                 alert("Han sortit tots els numeros!");
                 return 0;
             } else {
@@ -336,7 +332,6 @@ $(document).ready(function () {
     //Player Conf wants to start game
     //Inform host to check number of players
     socket.on('SGtoHost', function (data) {
-        debugger;
         totalRounds = parseInt(data.nRondas);
         intervalTime = parseInt(data.nVelocidad * 1000);
         //Send Start Game to server
@@ -354,6 +349,7 @@ $(document).ready(function () {
     //Check possible bingo
     socket.on('possibleBingo', function (data) {
         clearInterval(randomInterval);
+        aalto.play();
         //Check bingo numbers
         setTimeout(function () {
             var generatedNums = bingo.selectedNumbers;
@@ -433,12 +429,12 @@ $(document).ready(function () {
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\
     function CreateAudioArray() {
         for (var i = 1; i < 91; i++) {
-            numsAudio[i] = new Audio('../client/files/' + i + '.wav');
+            numsAudio[i] = new Audio('../client/files/numbers/' + i + '.mp3');
         }
     }
 
     function StartGame(data) {
-        //swish.play();
+        swish.play();
         $('#main-menu').hide();
         context.clearRect(0, 0, canvas.width, canvas.height);
         numOfPlayers = data.numOfPlayers;
