@@ -34,11 +34,11 @@ var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
 var music = new Audio('../client/files/music.wav');
-var aalto = new Audio('../client/files/aalto.mp3');
+/* var aalto = new Audio('../client/files/aalto.mp3');
 var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
 music.volume = 0.3;
-
+ */
 
 var players = [];
 var numOfPlayers = 0;
@@ -60,7 +60,7 @@ var $ball = $('#balls > div'),
 /////////////////////JQUERY\\\\\\\\\\\\\\\\\
 //Number generator
 $(document).ready(function () {
-
+    alert("start");
     $('#display').hide();
     $('#generator').hide();
     $('#bingoWinner').hide();
