@@ -476,7 +476,7 @@ $(document).ready(function () {
             top: posRandom[1]
         });
 
-        rotateBall(770 + posRandom[0] + (diameter * i), random);
+        rotateBall(610 + posRandom[0] + (diameter * i), random);
         responsiveVoice.speak(random, "Spanish Female", {
             onend: function () {
                 $('td.cell' + random).addClass('selected');
