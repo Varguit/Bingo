@@ -33,7 +33,7 @@ var player20Avatar = new Image();
 var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
-var music = new Audio('../client/files/music.mp3');
+var music = new Audio('../client/files/music.wav');
 var aalto = new Audio('../client/files/aalto.mp3');
 var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
@@ -61,7 +61,7 @@ var $ball = $('#balls > div'),
 //Number generator
 $(document).ready(function () {
 
-    //CreateAudioArray();
+    CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
     $('#bingoWinner').hide();
