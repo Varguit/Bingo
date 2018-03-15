@@ -61,7 +61,6 @@ var $ball = $('#balls > div'),
 //Number generator
 $(document).ready(function () {
 
-    CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
     $('#bingoWinner').hide();
@@ -382,24 +381,12 @@ $(document).ready(function () {
         if (round < totalRounds) {
             round++;
             setTimeout(function () {
-                responsiveVoice.speak("Preparados para la siguiente ronda?", {
-                    onend: function () {
-                        music.pause();
-                        music.currentTime = 0;
+                music.pause();
+                music.currentTime = 0;
 
-                        socket.emit('nextRound', {
-                        });
-                        StartGame({ numOfPlayers: numOfPlayers });
-                        //setTimeout(function () {
-                        /*                     context.clearRect(0, 0, canvas.width, canvas.height);
-                                            $('#generator').show("slow");
-                                            $('#display').hide("fade");
-                                            $('#bingoWinner').hide("fade");
-                                            randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
-                         */                    //}, 5000);
-                    }
+                socket.emit('nextRound', {
                 });
-
+                StartGame({ numOfPlayers: numOfPlayers });
             }, 10000);
 
         } else {
@@ -419,7 +406,7 @@ $(document).ready(function () {
             }
         }
         //Restart numbers generator
-        responsiveVoice.speak("Falsa alarma, continuamos","Spanish Female", {
+        responsiveVoice.speak("Falsa alarma, continuamos", "Spanish Female", {
             onend: function () {
                 randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
             }
@@ -427,11 +414,11 @@ $(document).ready(function () {
     });
 
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\
-    function CreateAudioArray() {
-        for (var i = 1; i < 91; i++) {
-            numsAudio[i] = new Audio('../client/files/numbers/' + i + '.mp3');
-        }
-    }
+    /*     function CreateAudioArray() {
+            for (var i = 1; i < 91; i++) {
+                numsAudio[i] = new Audio('../client/files/numbers/' + i + '.mp3');
+            }
+        } */
 
     function StartGame(data) {
         swish.play();
@@ -475,20 +462,20 @@ $(document).ready(function () {
         });
 
         rotateBall(800 + posRandom[0] + (diameter * i), random);
-        responsiveVoice.speak(random, "Spanish Female", {
-            onend: function () {
-                $('td.cell' + random).addClass('selected');
-                $ball.eq(0).css({
-                    transform: 'none',
-                    transition: 'none',
-                    left: '-120px',
-                    top: '500px',
-                }).find('div').css({
-                    transform: 'none',
-                    transition: 'none'
-                })
-            }
-        });
+        num = new Audio('../client/files/numbers/' + random + '.mp3');
+        num.play();
+        setTimeout(() => {
+            $('td.cell' + random).addClass('selected');
+            $ball.eq(0).css({
+                transform: 'none',
+                transition: 'none',
+                left: '-120px',
+                top: '500px',
+            }).find('div').css({
+                transform: 'none',
+                transition: 'none'
+            })
+        }, 2000);
     }
 
     /*             try {
@@ -527,19 +514,19 @@ $(document).ready(function () {
         $('tbody tr td').removeClass("selected");
     }
 
-    function decir(text, onend) {
-        window.speechSynthesis.cancel();
-        var ssu = new SpeechSynthesisUtterance(text);
-        window.speechSynthesis.speak(ssu);
-        function _wait() {
-            if (!window.speechSynthesis.speaking) {
-                onend();
-                return;
+    /*     function decir(text, onend) {
+            window.speechSynthesis.cancel();
+            var ssu = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(ssu);
+            function _wait() {
+                if (!window.speechSynthesis.speaking) {
+                    onend();
+                    return;
+                }
+                window.setTimeout(_wait, 200);
             }
-            window.setTimeout(_wait, 200);
-        }
-        _wait();
-    }
+            _wait();
+        } */
 
     function weHaveAWinner(player) {
         $('#bingoWinner').show();
