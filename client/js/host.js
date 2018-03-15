@@ -33,10 +33,11 @@ var player20Avatar = new Image();
 var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
-var music = new Audio('../client/files/music.wav');
-/* var aalto = new Audio('../client/files/aalto.mp3');
+var music = new Audio('../client/files/music.mp3');
+var aalto = new Audio('../client/files/aalto.mp3');
 var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
-var fin = new Audio('../client/files/fin.mp3'); */
+var fin = new Audio('../client/files/fin.mp3');
+
 music.volume = 0.3;
 
 
@@ -456,6 +457,7 @@ $(document).ready(function () {
     function GenerateNumber() {
         $('#balls').show();
         var random = bingo.generateNextRandom().toString();
+        num = new Audio('../client/files/numbers/' + random + '.mp3');
         $('.ball>div>span').text(random);
         var posRandom = [
             $('td.cell' + random).position().left,
@@ -465,10 +467,9 @@ $(document).ready(function () {
             top: posRandom[1]
         });
 
-        rotateBall(800 + posRandom[0] + (diameter * i), random);
-        num = new Audio('../client/files/numbers/' + random + '.mp3');
-        num.play();
+        rotateBall(770 + posRandom[0] + (diameter * i), random);
         setTimeout(function () {
+            num.play();
             $('td.cell' + random).addClass('selected');
             $ball.eq(0).css({
                 transform: 'none',
