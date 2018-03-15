@@ -35,6 +35,7 @@ var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
 var music = new Audio('../client/files/music.mp3');
 var aalto = new Audio('../client/files/aalto.mp3');
+var bingoo = new Audio('../client/files/bingoo.mp3');
 var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
 var fin = new Audio('../client/files/fin.mp3');
 
@@ -159,7 +160,7 @@ $(document).ready(function () {
             player2Avatar.src = data.drawing;
 
             player2Avatar.onload = function () {
-                context.drawImage(player2Avatar, 1665, 40, player2Avatar.width / 2, player2Avatar.height / 2);
+                context.drawImage(player2Avatar, 1165, 40, player2Avatar.width / 2, player2Avatar.height / 2);
                 context.fillStyle = "#FA6900";
                 context.fillText(data.username.toUpperCase(), 1257, 270);
             }
@@ -168,9 +169,9 @@ $(document).ready(function () {
             player3Avatar.src = data.drawing;
 
             player3Avatar.onload = function () {
-                context.drawImage(player3Avatar, 535, 192, player3Avatar.width / 2, player3Avatar.height / 2);
+                context.drawImage(player3Avatar, 735, 192, player3Avatar.width / 2, player3Avatar.height / 2);
                 context.fillStyle = "#FE4365";
-                context.fillText(data.username.toUpperCase(), 706, 422);
+                context.fillText(data.username.toUpperCase(), 806, 422);
             }
         }
         else if (data.playerNum == 4) {
@@ -348,8 +349,8 @@ $(document).ready(function () {
     //Check possible bingo
     socket.on('possibleBingo', function (data) {
         clearInterval(randomInterval);
-        aalto.play();
-        aalto.onended = function () {
+        bingoo.play();
+        bingoo.onended = function () {
             responsiveVoice.speak(data.player + " dice que tiene bingo. Vamos a comprobarlo", "Spanish Female", {
                 onend: function () {
                     //Check bingo numbers
@@ -528,7 +529,7 @@ $(document).ready(function () {
         $('#bingoWinner').show();
         $('#balls').hide();
         bingo.generatedNums = [];
-        responsiveVoice.speak('BINGO. Felicidades ' + player, "Spanish Male");
+        responsiveVoice.speak('BINGO. Felicidades ' + player, "Spanish Female");
         //
     }
 
