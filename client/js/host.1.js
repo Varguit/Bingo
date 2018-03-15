@@ -34,9 +34,11 @@ var numsAudio = [];
 var pop = new Audio('../client/files/pop.wav');
 var swish = new Audio('../client/files/swish.wav');
 var music = new Audio('../client/files/music.wav');
-var num4 = new Audio('../client/files/num4.wav');
+/* var aalto = new Audio('../client/files/aalto.mp3');
+var falsaAlarma = new Audio('../client/files/falsaAlarma.mp3');
+var fin = new Audio('../client/files/fin.mp3');
+ */
 music.volume = 0.3;
-var buffer = 0.08;
 
 var players = [];
 var numOfPlayers = 0;
@@ -59,6 +61,7 @@ var $ball = $('#balls > div'),
 //Number generator
 $(document).ready(function () {
 
+    alert("despres ready");
     //CreateAudioArray();
     $('#display').hide();
     $('#generator').hide();
@@ -66,12 +69,10 @@ $(document).ready(function () {
     $('#balls').hide();
     //debugger;
     music.play();
-    //responsiveVoice.speak("probando voz", "Spanish Female");
+
 
     $('#start-game').click(function () {
         socket.emit('SG');
-        //buttonClick.play(); so del botó
-        responsiveVoice.speak("probando voz", "Spanish Female");
     });
 
     var bingo = {
@@ -85,7 +86,7 @@ $(document).ready(function () {
         generateNextRandom: function () {
             if (bingo.selectedNumbers.length > 90) {
                 clearInterval(randomInterval);
-                responsiveVoice.speak("Empanados, como puede ser que nadie tenga Bingo?");
+                //responsiveVoice.speak("Empanados, como puede ser que nadie tenga Bingo?");
                 alert("Han sortit tots els numeros!");
                 return 0;
             } else {
@@ -131,6 +132,7 @@ $(document).ready(function () {
     socket.emit('HC');
 
     socket.on('HCR', function (data) {
+        alert("abans room code");
         roomCode = data.room;
         $('#room-code').text(roomCode);
         //$('#link').text(data.ip + ":" + data.port);
@@ -334,7 +336,6 @@ $(document).ready(function () {
     //Player Conf wants to start game
     //Inform host to check number of players
     socket.on('SGtoHost', function (data) {
-        debugger;
         totalRounds = parseInt(data.nRondas);
         intervalTime = parseInt(data.nVelocidad * 1000);
         //Send Start Game to server
@@ -352,7 +353,10 @@ $(document).ready(function () {
     //Check possible bingo
     socket.on('possibleBingo', function (data) {
         clearInterval(randomInterval);
-        //Check bingo numbers
+        aalto.play();
+        /*         responsiveVoice.speak("ALTO. Parece que " + data.player + " tiene bingo. Vamos a comprobarlo", "Spanish Female", {
+                    onend: function () {
+         */                //Check bingo numbers
         setTimeout(function () {
             var generatedNums = bingo.selectedNumbers;
             var givenNums = data.bingoNums;
@@ -372,8 +376,24 @@ $(document).ready(function () {
                 //alert("Aquests numeros no hi son: " + difference);
             }
         }, 5000);
+/*             }
+        });
+ */    });
 
-    });
+    socket.on('PlayerPenalty', function (data) {
+        for (var i = 0; i < players.length; i++) {
+            if (data.playerNum == players[i].playerNum) {
+                players[i].score -= data.amount * 100;
+            }
+        }
+        //Restart numbers generator
+        falsaAlarma.play();
+/*         responsiveVoice.speak("Falsa alarma, continuamos", "Spanish Female", {
+            onend: function () {
+ */                randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+
+/*         });
+ */    });
 
     socket.on('UpdateScore', function (data) {
 
@@ -384,59 +404,55 @@ $(document).ready(function () {
         if (round < totalRounds) {
             round++;
             setTimeout(function () {
-                responsiveVoice.speak("Preparados para la siguiente ronda?", {
+/*                 responsiveVoice.speak("Preparados para la siguiente ronda?", {
                     onend: function () {
-                        music.pause();
-                        music.currentTime = 0;
+ */                        music.pause();
+                music.currentTime = 0;
 
-                        socket.emit('nextRound', {
-                        });
-                        StartGame({ numOfPlayers: numOfPlayers });
-                        //setTimeout(function () {
-                        /*                     context.clearRect(0, 0, canvas.width, canvas.height);
-                                            $('#generator').show("slow");
-                                            $('#display').hide("fade");
-                                            $('#bingoWinner').hide("fade");
-                                            randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
-                         */                    //}, 5000);
-                    }
+                socket.emit('nextRound', {
                 });
-
+                StartGame({ numOfPlayers: numOfPlayers });
+                //setTimeout(function () {
+                /*                     context.clearRect(0, 0, canvas.width, canvas.height);
+                                    $('#generator').show("slow");
+                                    $('#display').hide("fade");
+                                    $('#bingoWinner').hide("fade");
+                                    randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
+                 */                    //}, 5000);
+                /*                     }
+                                });
+                 */
             }, 10000);
 
         } else {
             //Game end
-            alert("todas las rondas completadas")
-            socket.emit('gameEnd', {
-            });
+            fin.play();
+            fin.onended = function () {
+                /*             responsiveVoice.speak("Fin del juego", "Spanish Female");
+                 */            //alert("todas las rondas completadas")
+                round = 1;
+                ResetPlayerScores();
+                socket.emit('gameEnd', {
+                });
+            };
         }
 
 
     });
 
-    socket.on('PlayerPenalty', function (data) {
-        for (var i = 0; i < players.length; i++) {
-            if (data.playerNum == players[i].playerNum) {
-                players[i].score -= data.amount * 100;
-            }
-        }
-        //Restart numbers generator
-        responsiveVoice.speak("Falsa alarma, continuamos","Spanish Female", {
-            onend: function () {
-                randomInterval = setInterval(function () { GenerateNumber() }, intervalTime);
-            }
-        });
-    });
+
 
     /////////////////////////FUNCTIONS\\\\\\\\\\\\\\\\\\\\\\\\
     function CreateAudioArray() {
         for (var i = 1; i < 91; i++) {
-            numsAudio[i] = new Audio('../client/files/' + i + '.wav');
+            numsAudio[i] = new Audio('../client/files/numbers/' + i + '.mp3');
         }
     }
 
     function StartGame(data) {
-        //swish.play();
+        //music.pause();
+        //music.currentTime = 0;
+        swish.play();
         $('#main-menu').hide();
         context.clearRect(0, 0, canvas.width, canvas.height);
         numOfPlayers = data.numOfPlayers;
@@ -453,13 +469,12 @@ $(document).ready(function () {
 
     function rotateBall(distance, text) {
         $('.ball>div>span').text(text);
-        console.log(distance);
         var degree = distance * 360 / perimeter;
         $ball.eq(i).css({
-            transition: "3s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+            transition: "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
             transform: 'translateX(' + distance + 'px)'
         }).find('div').css({
-            transition: "3s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
+            transition: "2s cubic-bezier(1.000, 1.450, 0.185, 0.850)",
             transform: 'rotate(' + degree + 'deg)'
         });
     }
@@ -470,27 +485,26 @@ $(document).ready(function () {
         $('.ball>div>span').text(random);
         var posRandom = [
             $('td.cell' + random).position().left,
-            $('td.cell' + random).position().top
+            $('td.cell' + random).position().top + diameter
         ];
         $ball.eq(0).css({
             top: posRandom[1]
         });
 
-        rotateBall(800 + posRandom[0] + (diameter * i), random);
-        responsiveVoice.speak(random, "Spanish Female", {
-            onend: function () {
-                $('td.cell' + random).addClass('selected');
-                $ball.eq(0).css({
-                    transform: 'none',
-                    transition: 'none',
-                    left: '-120px',
-                    top: '500px',
-                }).find('div').css({
-                    transform: 'none',
-                    transition: 'none'
-                })
-            }
-        });
+        rotateBall(770 + posRandom[0] + (diameter * i), random);
+        numsAudio[random].play();
+        setTimeout(() => {
+            $('td.cell' + random).addClass('selected');
+            $ball.eq(0).css({
+                transform: 'none',
+                transition: 'none',
+                left: '-120px',
+                top: '500px',
+            }).find('div').css({
+                transform: 'none',
+                transition: 'none'
+            })
+        }, 2000);
     }
 
     /*             try {
@@ -547,7 +561,7 @@ $(document).ready(function () {
         $('#bingoWinner').show();
         $('#balls').hide();
         bingo.generatedNums = [];
-        responsiveVoice.speak('BINGOOOO. Felicidades ' + player);
+        //responsiveVoice.speak("Felicidades " + player + " has ganado esta ronda", "Spanish Female");
         //
     }
 
@@ -640,6 +654,12 @@ $(document).ready(function () {
             if (winner == players[i].name) {
                 players[i].score += 1000;
             }
+        }
+    }
+
+    function ResetPlayerScores() {
+        for (var i = 0; i < players.length; i++) {
+            players[i].score = 0;
         }
     }
 
